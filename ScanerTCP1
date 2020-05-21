@@ -1,0 +1,21 @@
+
+
+#!/bin/bash
+
+if [[ "$1" == "help" ]]; then
+echo Scanner of open TCP ports in a given range. The range is specified by two arguments, the first means the beginning of the range, and the second means the end
+exit 0
+fi
+
+if [[ "$1" == "" ]] || [[ "$2" == "" ]] || [[ "$2" -lt "$1" ]]; then
+echo invalid argument
+exit 1
+fi
+
+for (( i = $1; i < $2; i++ ))
+do
+netstat -a | grep -i "listen" | grep ".*:$i$"
+done
+  
+
+
