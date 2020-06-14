@@ -12,10 +12,12 @@ echo invalid argument
 exit 1
 fi
 
+netstat -a | grep -i "listen" > out.txt
 for (( i = $1; i < $2; i++ ))
 do
-netstat -a | grep -i "listen" | grep ".*:$i$"
-done
+grep ".$i" out.txt
+done  
+exit
   
 
 
